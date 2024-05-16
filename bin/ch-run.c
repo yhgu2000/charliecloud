@@ -246,8 +246,8 @@ int main(int argc, char *argv[])
 #endif
    VERBOSE("unsafe: %d", args.unsafe);
 
-   extern void girc(struct container *c);
-   girc(&args.c);
+   extern void girc(const char*, struct container *);
+   girc(argv[0], &args.c);
 
    containerize(&args.c);
    fix_environment(&args);
