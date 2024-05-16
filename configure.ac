@@ -231,6 +231,12 @@ AC_DEFUN([CH_CHECK_VERSION], [
   AS_VAR_POPDEF([prog])
 ])
 
+### C++ compiler ###############################################################
+
+# C++17
+AC_PROG_CXX
+AX_CXXFLAGS
+CXXFLAGS="$CXXFLAGS -std=c++17"
 
 ### C compiler ###############################################################
 

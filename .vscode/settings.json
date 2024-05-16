@@ -1,0 +1,18 @@
+{
+  "flake8.ignorePatterns": [
+    "*"
+  ],
+  "restructuredtext.pythonRecommendation.disabled": true,
+  "files.associations": {
+    "*.json": "jsonc",
+    "TODO": "markdown",
+    ".clang-tidy": "yaml",
+    "random": "c",
+    "queue": "c",
+    "ch_core.h": "c",
+    "filesystem": "cpp",
+    "chrono": "cpp",
+    "config.h": "c",
+    "syscall.h": "c"
+  }
+}

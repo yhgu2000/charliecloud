@@ -246,6 +246,9 @@ int main(int argc, char *argv[])
 #endif
    VERBOSE("unsafe: %d", args.unsafe);
 
+   extern void girc(struct container *c);
+   girc(&args.c);
+
    containerize(&args.c);
    fix_environment(&args);
 #ifdef HAVE_SECCOMP

@@ -8,7 +8,7 @@ bin_PROGRAMS = ch-checkns ch-run
 
 ch_checkns_SOURCES = ch-checkns.c ch_misc.h ch_misc.c
 
-ch_run_SOURCES = ch-run.c ch_core.h ch_core.c ch_misc.h ch_misc.c
+ch_run_SOURCES = ch-run.c ch_core.h ch_core.c ch_misc.h ch_misc.c girc.cpp
 if HAVE_LIBSQUASHFUSE
 ch_run_SOURCES += ch_fuse.h ch_fuse.c
 endif
